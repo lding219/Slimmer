@@ -13,7 +13,7 @@ This game interests me because I am personally a virtual pet game lover, I enjoy
 
 
 ## User Stories
-- As a user, I want to be able to catch a stray cat(X), adopt it, name it, and add it to the list of cats I owned(Y).
+- As a user, I want to be able to catch a stray cat (X), adopt it, name it, and add it to the list of cats I owned(Y).
 - As a user, I want to be able to view the cats I currently owned, and viewed the value representing how close we are. 
 - As a user, I want to be able to see the food I owned, and feed the selected one to the cat I selected.
 - As a user, I want to be able to pet the cat in order to increase the value representing how close we are. 
