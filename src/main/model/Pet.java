@@ -24,8 +24,9 @@ public class Pet {
     public void eatFood(Food newFood, int amount) {
         boolean found = false;
         String newFoodName = newFood.getFoodName();
+        String newFoodDayName = newFood.getDayName();
         for (Food food : foods) {
-            if (food.getFoodName().equals(newFoodName)) {
+            if (food.getFoodName().equals(newFoodName) && newFoodDayName.equals(food.getDayName())) {
                 found = true;
                 food.increaseAmountBy(amount);
                 break;
