@@ -18,30 +18,43 @@ public class Pet {
 
     // REQUIRES: amount>=0
     // MODIFIES: this, food
-    // EFFECTS: the food is added to the list of the food the pet has had,
-    // and docoment the amount.
-    public void eatFood(Food food, int amount) {
-        this.foods.add(food);
-        food.increaseAmountBy(amount);
+    // EFFECTS: when the new food is not in the list, add the newfood.
+    // when the new food is something already in the list,
+    // just increase the foodAmount.
+    public void eatFood(Food newFood, int amount) {
+        boolean found = false;
+        String newFoodName = newFood.getFoodName();
+        for (Food food : foods) {
+            if (food.getFoodName().equals(newFoodName)) {
+                found = true;
+                food.increaseAmountBy(amount);
+                break;
+            }
+        }
+        if (!found) {
+            foods.add(newFood);
+            newFood.increaseAmountBy(amount);
+        }
     }
 
     // REQUIRES: day must be a day in the week, eg. Monday
     // EFFECT: show all the food the pet has had in the given day
     public ArrayList<Food> viewDailyFoods(String day) {
         ArrayList<Food> dailyFoods = new ArrayList<>();
-       for (Food food : foods) {
-        if(food.getDayName().equals(day)){
-            dailyFoods.add(food);
+        for (Food food : foods) {
+            if (food.getDayName().equals(day)) {
+                dailyFoods.add(food);
+            }
         }
-       }
-       return dailyFoods;
+        return dailyFoods;
     }
 
     public String getPetName() {
         return petName;
 
     }
+
     public ArrayList<Food> getFoods() {
         return foods;
-}
+    }
 }
