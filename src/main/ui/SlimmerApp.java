@@ -9,7 +9,6 @@ public class SlimmerApp {
     private boolean isProgramRunning;
     private Scanner scanner;
     private ArrayList<Pet> home;
-    private Pet pet;
 
     // run the slimmer app
     public SlimmerApp() {
@@ -69,7 +68,7 @@ public class SlimmerApp {
         printDivider();
     }
 
-    // EFFECTS: add a new pet to home
+    // EFFECTS: prompts the user to add a new pet to home
     public void addNewPet() {
         System.out.println("Please enter the pet's name");
         String petName = this.scanner.nextLine();
@@ -79,7 +78,8 @@ public class SlimmerApp {
     }
 
     // EFFECTS: displays all pets at home at a time,
-    // user can choose a pet by entering the name
+    // promopts user to enter a pet name to view the
+    // weekly report.
     // if the name is in home, it will return a weekly report
     public void viewHome() {
         for (Pet pet : home) {
@@ -100,24 +100,28 @@ public class SlimmerApp {
         }
     }
 
-    // EFFETCS: displays the daily report
+    // EFFETCS: displays the daily report if the name
+    // user entered is in home
     public void viewDailyReport() {
+        boolean found = false;
         System.out.println("Please enter the pet name you want to view the daily report");
         String dailyName = this.scanner.nextLine();
         System.out.println("Please enter the day you want to check. eg. Monday");
         String dayName = this.scanner.nextLine();
         for (Pet pet : home) {
             if (dailyName.equals(pet.getPetName())) {
+                found = true;
                 dailyReportPrinter(pet, dayName);
-            } else {
-                System.out.println("There is no" + dailyName + "in your home, please add it first!");
-                displayMenu();
+            } else if (!found){
+                System.out.println("There is no " + dailyName + " in your home, please add it first!");
             }
         }
     }
 
+    // EFFETCS: displays the weekly report if the name
+    // user entered is in home
     public void weeklyReportPrinter(Pet pet) {
-        System.out.println("Weekly Food Intake Report for" + pet.getPetName() + ":");
+        System.out.println("Weekly Food Intake Report for " + pet.getPetName() + ":");
         String[] days = { "Monday", "Tuesday", "Wednesday",
                 "Thursday", "Friday", "Saturday", "Sunday" };
         for (String day : days) {
@@ -126,6 +130,8 @@ public class SlimmerApp {
         }
     }
 
+    // EFFETCS: print the daily report based on the food name and food
+    // amount the pet has had on a given day
     private void dailyReportPrinter(Pet pet, String day) {
         ArrayList<Food> dailyFoods = pet.viewDailyFoods(day);
         if (dailyFoods.isEmpty()) {
@@ -139,7 +145,8 @@ public class SlimmerApp {
         }
     }
 
-    // EFFECTS: feed the chosen pet
+    // EFFECTS: feed the pet if the pet name user has entered
+    // is in home.
     public void feed() {
         System.out.println("Please enter the name of the pet you want to feed");
         String petName = this.scanner.nextLine();
