@@ -5,35 +5,51 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import java.util.*;
 
 public class PetTest {
     private Pet testPet;
-    
+    private Food f1;
+    private Food f2;
+
     @BeforeEach
     void runBefore() {
         testPet = new Pet("Lucky");
+        f1 = new Food("Stawberry", 1);
+        f2 = new Food("fish", 0);
     }
 
     @Test
     void testConstructor() {
-       assertEquals("Lucky", testPet.getPetName());
-       assertEquals(0, testPet.getFoodAmount());
-       assertEquals(0, testPet.getTreatAmount());
+        assertEquals("Lucky", testPet.getPetName());
+        assertTrue(testPet.getFoods().isEmpty());
     }
+//Test the case when the pet have one food for one time
     @Test
-    void testEatFood(){
-        testPet.eatFood(20);
-        assertEquals(20, testPet.getFoodAmount());
-        testPet.eatFood(10);
-        assertEquals(30, testPet.getFoodAmount());
+    void testEatSingleFoodSingleTime() {
+        testPet.eatFood(f1, 3);
+        ArrayList<Food> foods = testPet.getFoods();
+        assertEquals(f1, foods.get(0));
+        assertEquals(4, foods.get(0).getFoodAmount()); 
     }
+    //Test the case when the pet have one food for multiple times
     @Test
-    void testEatTreats(){
-        testPet.eatTreat(20);
-        assertEquals(20, testPet.getTreatAmount());
-        testPet.eatTreat(10);
-        assertEquals(30, testPet.getTreatAmount());
+    void testEatSingleFoodMultipleTime() {
+        testPet.eatFood(f1, 3);
+        testPet.eatFood(f1, 3);
+        ArrayList<Food> foods = testPet.getFoods();
+        assertEquals(f1, foods.get(0));
+        assertEquals(7, foods.get(0).getFoodAmount()); 
     }
-
+    //Test the case when the pet have multiple food for multiple times
+    @Test
+    void testEatMultipleFood() {
+        testPet.eatFood(f1, 3);
+        testPet.eatFood(f2, 3);
+        ArrayList<Food> foods = testPet.getFoods();
+        assertEquals(f1, foods.get(0));
+        assertEquals(f2, foods.get(1));
+        assertEquals(4, foods.get(0).getFoodAmount()); 
+        assertEquals(3, foods.get(1).getFoodAmount()); 
+    }
 }
