@@ -15,8 +15,8 @@ public class PetTest {
     @BeforeEach
     void runBefore() {
         testPet = new Pet("Lucky");
-        f1 = new Food("Stawberry", 1);
-        f2 = new Food("fish", 0);
+        f1 = new Food("Strawberry", 1, "Tuesday");
+        f2 = new Food("fish", 0, "Wednesday");
     }
 
     @Test
@@ -24,24 +24,27 @@ public class PetTest {
         assertEquals("Lucky", testPet.getPetName());
         assertTrue(testPet.getFoods().isEmpty());
     }
-//Test the case when the pet have one food for one time
+
+    // Test the case when the pet have one food for one time
     @Test
     void testEatSingleFoodSingleTime() {
         testPet.eatFood(f1, 3);
         ArrayList<Food> foods = testPet.getFoods();
         assertEquals(f1, foods.get(0));
-        assertEquals(4, foods.get(0).getFoodAmount()); 
+        assertEquals(4, foods.get(0).getFoodAmount());
     }
-    //Test the case when the pet have one food for multiple times
+
+    // Test the case when the pet have one food for multiple times
     @Test
     void testEatSingleFoodMultipleTime() {
         testPet.eatFood(f1, 3);
         testPet.eatFood(f1, 3);
         ArrayList<Food> foods = testPet.getFoods();
         assertEquals(f1, foods.get(0));
-        assertEquals(7, foods.get(0).getFoodAmount()); 
+        assertEquals(7, foods.get(0).getFoodAmount());
     }
-    //Test the case when the pet have multiple food for multiple times
+
+    // Test the case when the pet have multiple food for multiple times
     @Test
     void testEatMultipleFood() {
         testPet.eatFood(f1, 3);
@@ -49,7 +52,24 @@ public class PetTest {
         ArrayList<Food> foods = testPet.getFoods();
         assertEquals(f1, foods.get(0));
         assertEquals(f2, foods.get(1));
-        assertEquals(4, foods.get(0).getFoodAmount()); 
-        assertEquals(3, foods.get(1).getFoodAmount()); 
+        assertEquals(4, foods.get(0).getFoodAmount());
+        assertEquals(3, foods.get(1).getFoodAmount());
+    }
+
+    @Test
+    void testViewDailyFoods() {
+        testPet.eatFood(f1, 3);
+        testPet.viewDailyFoods("Tuesday");
+        ArrayList<Food> tuesdayFoods = testPet.viewDailyFoods("Tuesday");
+        assertEquals("Strawberry", tuesdayFoods.get(0).getFoodName());
+        assertEquals(4, tuesdayFoods.get(0).getFoodAmount());
+    }
+
+    @Test
+    void testViewDailyFoodsEmpty() {
+        testPet.eatFood(f1, 3);
+        testPet.viewDailyFoods("Wednesday");
+        ArrayList<Food> wednesdayFoods = testPet.viewDailyFoods("Wednesday");
+        assertTrue(wednesdayFoods.isEmpty());
     }
 }
