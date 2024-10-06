@@ -1,15 +1,17 @@
 package model;
-
 public class Food {
     private int foodAmount; //the food amount the pet has had
     private String foodName;//the name of the food
+    private String dayName;// the day the food being eaten
+    
 
     // REQUIRES: foodAmount >=0, foodName has a non-zero length
-    // EFFECTS: constructs food with foodName and foodAmount
-    // with zero funding applied
-public Food(String foodName, int foodAmount){
+    // EFFECTS: constructs food with foodName, foodAmount, and
+    // the day the food being eaten
+public Food(String foodName, int foodAmount, String dayName){
     this.foodName = foodName;
     this.foodAmount = foodAmount;
+    this.dayName = dayName;
 }
     // REQUIRES: amount >=0
     // MODIFIES: this
@@ -23,7 +25,9 @@ public String getFoodName(){
 public int getFoodAmount(){
     return foodAmount;
 }
-
+public String getDayName() {
+    return dayName;
+}
 }
 
 
