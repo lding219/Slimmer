@@ -139,7 +139,7 @@ public class SlimmerApp {
         } else {
             System.out.print(day + ": ");
             for (Food food : dailyFoods) {
-                System.out.print(pet.getPetName() + " ate " + food.getFoodName() + " by " + food.getFoodAmount());
+                System.out.print(pet.getPetName() + " ate " + food.getFoodName() + " by " + food.getFoodAmount() + "\n");
             }
             System.out.println();
         }
