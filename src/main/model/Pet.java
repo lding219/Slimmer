@@ -1,48 +1,33 @@
 package model;
-
+import java.util.*;
 public class Pet {
     private String petName; // name of the pet
-    private int foodAmount; // food in grams the pet has had in a day
-    private int treatAmount; // treats in grams the pet has had in a day
+    private ArrayList<Food> foods; // the list of food the cat has had today
 
 
 /*
  * REQUIRES: petName has a non-zero length
- * EFFECTS: name on the pet is set to petName ; set foodAmount
- * and treatAmount = 0
+ * EFFECTS: name on the pet is set to petName ; set foods be
+ * an empty list
  */
 public Pet(String petName){
     this.petName = petName;
-    foodAmount = 0;
-    treatAmount = 0;
+    this.foods = new ArrayList<>();
+}
+// REQUIRES: amount>=0
+// MODIFIES: this, food
+// EFFECTS: the food is added to the list of the food the pet has had,
+// and docoment the amount.
+public void eatFood(Food food, int amount){ 
+    this.foods.add(food);
+    food.increaseAmountBy(amount);
 }
 
-/*
- * REQUIRES: amount>=0
- * MODIFIERS: this
- * EFFECTS: add single food intake to the total amount of food 
- *          the pet has had today
- */
-public void eatFood(int amount){
-    this.foodAmount += amount;
-}
-/*
- * REQUIRES: amount>=0
- * MODIFIERS: this
- * EFFECTS: add single treat intake to the total amount of treat 
- *          the pet has had today
- */
-public void eatTreat(int amount){
-    this.treatAmount += amount;
-}
 public String getPetName(){
     return petName;
 
 }
-public int getFoodAmount(){
-    return foodAmount;
-}
-public int getTreatAmount(){
-    return treatAmount;
+public ArrayList<Food> getFoods(){
+    return foods;
 }
 }
