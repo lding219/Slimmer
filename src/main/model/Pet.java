@@ -18,7 +18,7 @@ public class Pet {
 
     // REQUIRES: amount>=0
     // MODIFIES: this, food
-    // EFFECTS: when the new food is not in the list, add the newfood.
+    // EFFECTS: when the new food is not in the list, add newfood to foods.
     // when the new food is something already in the list,
     // just increase the foodAmount.
     public void eatFood(Food newFood, int amount) {
@@ -38,6 +38,7 @@ public class Pet {
     }
 
     // REQUIRES: day must be a day in the week, eg. Monday
+    // MODIFIES: this
     // EFFECT: show all the food the pet has had in the given day
     public ArrayList<Food> viewDailyFoods(String day) {
         ArrayList<Food> dailyFoods = new ArrayList<>();
