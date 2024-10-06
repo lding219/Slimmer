@@ -42,6 +42,7 @@ public class SlimmerApp {
         System.out.println("Please select an option:\n");
         System.out.println("a: Add a new pet");
         System.out.println("v: Visit my home");
+        System.out.println("d: View daily report of a pet before feeding");
         System.out.println("f: Feed my pet");
         printDivider();
     }
@@ -58,6 +59,9 @@ public class SlimmerApp {
                 break;
             case "f":
                 feed();
+                break;
+            case "d":
+                viewDailyReport();
                 break;
             default:
                 System.out.println("Invalid option inputted. Please try again.");
@@ -89,20 +93,36 @@ public class SlimmerApp {
                     weeklyReportPrinter(pet);
                 }
             }
-        }
-        else{System.out.println("Empty Home! Please add a pet!");
-        displayMenu();
+        } else {
+            System.out.println("Empty Home! Please add a pet!");
+            displayMenu();
 
         }
     }
-   
-    public void weeklyReportPrinter(Pet pet){
+
+    // EFFETCS: displays the daily report
+    public void viewDailyReport() {
+        System.out.println("Please enter the pet name you want to view the daily report");
+        String dailyName = this.scanner.nextLine();
+        System.out.println("Please enter the day you want to check. eg. Monday");
+        String dayName = this.scanner.nextLine();
+        for (Pet pet : home) {
+            if (dailyName.equals(pet.getPetName())) {
+                dailyReportPrinter(pet, dayName);
+            } else {
+                System.out.println("There is no" + dailyName + "in your home, please add it first!");
+                displayMenu();
+            }
+        }
+    }
+
+    public void weeklyReportPrinter(Pet pet) {
         System.out.println("Weekly Food Intake Report for" + pet.getPetName() + ":");
-        String[] days = {"Monday", "Tuesday", "Wednesday", 
-        "Thursday", "Friday", "Saturday", "Sunday"};
+        String[] days = { "Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday", "Saturday", "Sunday" };
         for (String day : days) {
             dailyReportPrinter(pet, day);
-            
+
         }
     }
 
@@ -110,13 +130,14 @@ public class SlimmerApp {
         ArrayList<Food> dailyFoods = pet.viewDailyFoods(day);
         if (dailyFoods.isEmpty()) {
             System.out.println(day + ": Alert! Ate nothing");
-    }else {
-        System.out.print(day + ": ");
-        for (Food food : dailyFoods) {
-            System.out.print(food.getFoodName() + " (" + food.getFoodAmount() + "), ");
+        } else {
+            System.out.print(day + ": ");
+            for (Food food : dailyFoods) {
+                System.out.print(pet.getPetName() + " ate " + food.getFoodName() + " by " + food.getFoodAmount());
+            }
+            System.out.println();
         }
-        System.out.println();
-    }}
+    }
 
     // EFFECTS: feed the chosen pet
     public void feed() {
@@ -143,6 +164,7 @@ public class SlimmerApp {
             System.out.println("Invalid option inputted. Please try again.");
         }
     }
+
     // EFFECTS: prints out a line of dashes to act as a divider
     private void printDivider() {
         System.out.println("------------------------------------");
