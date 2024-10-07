@@ -3,7 +3,7 @@ package ui;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
-
+// My code of this class is referencing TellerApp and FlashcardReviewer
 // Pets food intake documentation app
 public class SlimmerApp {
     private boolean isProgramRunning;
