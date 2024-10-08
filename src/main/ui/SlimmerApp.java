@@ -103,19 +103,22 @@ public class SlimmerApp {
     // EFFETCS: displays the daily report if the name
     // user entered is in home
     public void viewDailyReport() {
+        labelPrinter();
         boolean found = false;
-        System.out.println("Please enter the pet name you want to view the daily report");
-        String dailyName = this.scanner.nextLine();
+        System.out.println("Please enter the pet you want to view the daily report");
+        int dailyNum = this.scanner.nextInt();
+        this.scanner.nextLine();
         System.out.println("Please enter the day you want to check. eg. Monday");
         String dayName = this.scanner.nextLine();
         for (Pet pet : home) {
-            if (dailyName.equals(pet.getPetName())) {
+            if (dailyNum == (pet.getLabelNumber())) {
                 found = true;
                 dailyReportPrinter(pet, dayName);
-            } else if (!found) {
-                System.out.println("There is no " + dailyName + " in your home, please add it first!");
             }
         }
+     if (!found) {
+        System.out.println("There is no such pet in your home, please add it first!");
+    }
     }
 
     // EFFETCS: displays the weekly report if the name
