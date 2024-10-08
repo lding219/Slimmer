@@ -81,7 +81,7 @@ public class SlimmerApp {
     // EFFECTS: displays all pets at home at a time,
     // promopts user to enter a pet label view the
     // weekly report.
-    // if the name is in home, it will return a weekly report
+    // if the pet is in home, it will return a weekly report
     public void viewHome() {
         if (!home.isEmpty()) {
             labelPrinter();
@@ -100,7 +100,7 @@ public class SlimmerApp {
         }
     }
 
-    // EFFETCS: displays the daily report if the name
+    // EFFETCS: displays the daily report if the label
     // user entered is in home
     public void viewDailyReport() {
         labelPrinter();
@@ -121,8 +121,7 @@ public class SlimmerApp {
     }
     }
 
-    // EFFETCS: displays the weekly report if the name
-    // user entered is in home
+    // EFFETCS: print the weekly report based on printing daily reports
     public void weeklyReportPrinter(Pet pet) {
         System.out.println("Weekly Food Intake Report for " + pet.getPetName() + ":");
         String[] days = { "Monday", "Tuesday", "Wednesday",
