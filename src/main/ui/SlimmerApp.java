@@ -79,18 +79,17 @@ public class SlimmerApp {
     }
 
     // EFFECTS: displays all pets at home at a time,
-    // promopts user to enter a pet name to view the
+    // promopts user to enter a pet label view the
     // weekly report.
     // if the name is in home, it will return a weekly report
     public void viewHome() {
-        for (Pet pet : home) {
-            System.out.println(pet.getPetName());
-        }
         if (!home.isEmpty()) {
-            System.out.println("Please enter the pet name you want to view the weekly report");
-            String reportName = this.scanner.nextLine();
+            labelPrinter();
+            System.out.println("Please enter the pet you want to view the weekly report");
+            int reportNumber = this.scanner.nextInt();
+            this.scanner.nextLine();
             for (Pet pet : home) {
-                if (reportName.equals(pet.getPetName())) {
+                if (reportNumber == pet.getLabelNumber()) {
                     weeklyReportPrinter(pet);
                 }
             }
