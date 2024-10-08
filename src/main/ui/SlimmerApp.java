@@ -150,39 +150,29 @@ public class SlimmerApp {
     // EFFECTS: label the pets at home, prompts the user to feed the pet
     // with using the number labelled
     public void feed() {
-        if(!home.isEmpty()){
-            labelPets();
-            System.out.println("You have these pets at home: ");
-            for (Pet pet : home) {
-                System.out.println(pet.getLabelNumber() + ". " + pet.getPetName());
+        labelPrinter();
+        System.out.println("Please enter the pet you want to feed");
+        int petNumber = this.scanner.nextInt();
+        this.scanner.nextLine();
+        boolean included = false;
+        for (Pet pet : home) {
+            if (petNumber == pet.getLabelNumber()) {
+                included = true;
+                System.out.println("What food do you want to feed?");
+                String foodName = this.scanner.nextLine();
+                System.out.println("How much?");
+                int foodAmount = this.scanner.nextInt();
+                this.scanner.nextLine();
+                System.out.println("On what day? eg. Monday");
+                String day = this.scanner.nextLine();
+                pet.eatFood(new Food(foodName, 0, day), foodAmount);
+                System.out.println("Yummy!");
+                break;
             }
-            System.out.println("Please enter the pet you want to feed");
-            int petNumber = this.scanner.nextInt();
-            this.scanner.nextLine();
-            boolean thereItIs = false;
-            for (Pet pet : home) {
-                if (petNumber == pet.getLabelNumber()) {
-                    thereItIs = true;
-                    System.out.println("What food do you want to feed?");
-                    String foodName = this.scanner.nextLine();
-                    System.out.println("How much?");
-                    int foodAmount = this.scanner.nextInt();
-                    this.scanner.nextLine();
-                    System.out.println("On what day? eg. Monday");
-                    String day = this.scanner.nextLine();
-                    Food food = new Food(foodName, 0, day);
-                    pet.eatFood(food, foodAmount);
-                    System.out.println("Yummy!");
-                    break;
-                }
-                if (thereItIs == false) {
-                    System.out.println("There is no such pet in your home, please add it first!");
-                }
-            }}
-        else{
-            System.out.println("Home is empty! Please add a pet!");
         }
-
+        if (!included) {
+            System.out.println("There is no such pet at home!");
+        }
     }
 
     // MODIFIES: pet, this
@@ -192,6 +182,18 @@ public class SlimmerApp {
         for (Pet pet : home) {
             pet.setLabelNumber(i);
             i++;
+        }
+    }
+
+    public void labelPrinter() {
+        if (!home.isEmpty()) {
+            labelPets();
+            System.out.println("You have these pets at home: ");
+            for (Pet pet : home) {
+                System.out.println(pet.getLabelNumber() + ". " + pet.getPetName());
+            }
+        } else {
+            System.out.println("Home is empty! Please add a pet!");
         }
     }
 

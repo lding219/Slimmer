@@ -90,9 +90,10 @@ public class PetTest {
         assertEquals(4, tuesdayFoods.get(0).getFoodAmount());
         assertEquals(5, wednesdayFoods.get(0).getFoodAmount());
     }
+
     // Test the set label method
     @Test
-    void testSetLabel(){
+    void testSetLabel() {
         testPet.setLabelNumber(10);
         assertEquals(10, testPet.getLabelNumber());
     }

@@ -11,7 +11,7 @@ public class Home {
         this.home = new ArrayList<>();
     }
 
-    // MODIFIERS: this
+    // MODIFIES: this
     // EFFECTS: add a new pet to the list of old pets
     public void addPet(Pet pet) {
         this.home.add(pet);
@@ -24,5 +24,5 @@ public class Home {
     public int getHomeSize() {
         return home.size();
     }
-
+    
 }
