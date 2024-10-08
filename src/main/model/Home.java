@@ -1,6 +1,6 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
 
 // Represents a list of pets at home
 public class Home {

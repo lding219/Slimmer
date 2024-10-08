@@ -46,7 +46,6 @@ public class PetTest {
         assertEquals(7, foods.get(0).getFoodAmount());
     }
 
-
     // Test the case when the pet have multiple food for multiple times
     @Test
     void testEatMultipleFood() {
@@ -58,7 +57,7 @@ public class PetTest {
         assertEquals(4, foods.get(0).getFoodAmount());
         assertEquals(3, foods.get(1).getFoodAmount());
     }
-    // Test the case when the pet eats the pre-existed food on another day
+    // Test the case when the pet eats a food that has a document of being eaten
 
     @Test
     void testViewDailyFoods() {
@@ -69,6 +68,7 @@ public class PetTest {
         assertEquals(4, tuesdayFoods.get(0).getFoodAmount());
     }
 
+    // Test the case when the pet did not eat on a day
     @Test
     void testViewDailyFoodsEmpty() {
         testPet.eatFood(f1, 3);
@@ -76,6 +76,8 @@ public class PetTest {
         ArrayList<Food> wednesdayFoods = testPet.viewDailyFoods("Wednesday");
         assertTrue(wednesdayFoods.isEmpty());
     }
+
+    // Test the case when the pet eat foods on two separate days
     @Test
     void testEatAnotherDay() {
         testPet.eatFood(f1, 3);

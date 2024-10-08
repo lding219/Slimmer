@@ -1,10 +1,10 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class Pet {
     private String petName; // name of the pet
-    private ArrayList<Food> foods; // the list of food the cat has had today
+    private ArrayList<Food> foods; // the list of food the pet has had during the whole week
 
     /*
      * REQUIRES: petName has a non-zero length

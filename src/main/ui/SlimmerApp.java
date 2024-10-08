@@ -3,6 +3,7 @@ package ui;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
+
 // My code of this class is referencing TellerApp and FlashcardReviewer
 // Pets food intake documentation app
 public class SlimmerApp {
@@ -112,7 +113,7 @@ public class SlimmerApp {
             if (dailyName.equals(pet.getPetName())) {
                 found = true;
                 dailyReportPrinter(pet, dayName);
-            } else if (!found){
+            } else if (!found) {
                 System.out.println("There is no " + dailyName + " in your home, please add it first!");
             }
         }
@@ -139,7 +140,8 @@ public class SlimmerApp {
         } else {
             System.out.print(day + ": ");
             for (Food food : dailyFoods) {
-                System.out.print(pet.getPetName() + " ate " + food.getFoodName() + " by " + food.getFoodAmount() + "\n");
+                System.out
+                        .print(pet.getPetName() + " ate " + food.getFoodName() + " by " + food.getFoodAmount() + "\n");
             }
             System.out.println();
         }
@@ -150,7 +152,7 @@ public class SlimmerApp {
     public void feed() {
         System.out.println("Please enter the name of the pet you want to feed");
         String petName = this.scanner.nextLine();
-        boolean thereItIs = false;// check if the pet is in home
+        boolean thereItIs = false;
         for (Pet pet : home) {
             if (petName.equals(pet.getPetName())) {
                 thereItIs = true;
@@ -168,7 +170,7 @@ public class SlimmerApp {
             }
         }
         if (!thereItIs) {
-            System.out.println("Invalid option inputted. Please try again.");
+            System.out.println("There is no " + petName + " in your home, please add it first!");
         }
     }
 
