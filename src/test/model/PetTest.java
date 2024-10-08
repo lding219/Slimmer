@@ -25,6 +25,7 @@ public class PetTest {
     void testConstructor() {
         assertEquals("Lucky", testPet.getPetName());
         assertTrue(testPet.getFoods().isEmpty());
+        assertEquals(0, testPet.getLabelNumber());
     }
 
     // Test the case when the pet have one food for one time
@@ -89,4 +90,11 @@ public class PetTest {
         assertEquals(4, tuesdayFoods.get(0).getFoodAmount());
         assertEquals(5, wednesdayFoods.get(0).getFoodAmount());
     }
+    // Test the set label method
+    @Test
+    void testSetLabel(){
+        testPet.setLabelNumber(10);
+        assertEquals(10, testPet.getLabelNumber());
+    }
+
 }
