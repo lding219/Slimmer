@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Pet {
+    private int labelNumber; //label of the pet
     private String petName; // name of the pet
     private ArrayList<Food> foods; // the list of food the pet has had during the whole week
 
@@ -12,6 +13,7 @@ public class Pet {
      * an empty list
      */
     public Pet(String petName) {
+        labelNumber = 0;
         this.petName = petName;
         this.foods = new ArrayList<>();
     }
@@ -54,6 +56,12 @@ public class Pet {
     public String getPetName() {
         return petName;
 
+    }
+    public int getLabelNumber(){
+        return labelNumber;
+    }
+    public void setLabelNumber(int labelNumber){
+        this.labelNumber = labelNumber;
     }
 
     public ArrayList<Food> getFoods() {
