@@ -79,7 +79,7 @@ public class SlimmerApp {
     }
 
     // EFFECTS: displays all pets at home at a time,
-    // promopts user to enter a pet label view the
+    // promopts user to enter a pet label to view the
     // weekly report.
     // if the pet is in home, it will return a weekly report
     public void viewHome() {
@@ -116,9 +116,9 @@ public class SlimmerApp {
                 dailyReportPrinter(pet, dayName);
             }
         }
-     if (!found) {
-        System.out.println("There is no such pet in your home, please add it first!");
-    }
+        if (!found) {
+            System.out.println("There is no such pet in your home, please add it first!");
+        }
     }
 
     // EFFETCS: print the weekly report based on printing daily reports
@@ -186,6 +186,9 @@ public class SlimmerApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: print the label and the pet names.
+    // if there is no pets at home, asks the user to add a pet
     public void labelPrinter() {
         if (!home.isEmpty()) {
             labelPets();
