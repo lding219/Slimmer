@@ -16,5 +16,5 @@ This application interests me because I am personally a cat owner. I feel anxiou
 - As a user, I want to be able to document single food intake (X), label it as "treat", then add it to the list of food (Y) the pet have today. 
 - As a user, I want to be able to view the list of foods the pet has had today.
 - As a user, I want to be able to view the weekly report of food my pet has had.
-- As a user, I want to be able to save the information about the pets at home, and the food the have eaten.
-- As a user, I want to be able to reload my home.
+- As a user, I want to be able to be given the option to save the information about the pets at home, and the food the have eaten.
+- As a user, I want to be able to be given the option to reload my home.
