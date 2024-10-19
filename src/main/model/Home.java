@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 import java.util.ArrayList;
 
 // Represents a list of pets at home
-public class Home {
+public class Home implements Writable {
     private ArrayList<Pet> home;
 
     // EFFECTS: Constructs an empty list of pets
@@ -24,5 +27,23 @@ public class Home {
     public int getHomeSize() {
         return home.size();
     }
-    
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("home", homeToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray homeToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Pet p : home) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
+
 }

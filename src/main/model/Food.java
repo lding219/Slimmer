@@ -1,6 +1,10 @@
 package model;
 
-public class Food {
+import org.json.JSONObject;
+
+import persistence.Writable;
+
+public class Food implements Writable {
     private int foodAmount; // the food amount the pet has had
     private String foodName;// the name of the food
     private String dayName;// the day the food being eaten
@@ -31,5 +35,14 @@ public class Food {
 
     public String getDayName() {
         return dayName;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("foodName", foodName);
+        json.put("foodAmount", foodAmount);
+        json.put("dayName", dayName);
+        return json;
     }
 }
