@@ -96,11 +96,23 @@ public class SlimmerApp {
     //MODIFIES: this
     //EFFTECS: load home from file
     private void load() {
-       //stub
+        try {
+            home = jsonReader.read();
+            System.out.println("Loaded " + "home" + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
     //EFFECTS: save home to file
     private void saveBeforeQuit() {
-        //stub
+        try {
+            jsonWriter.open();
+            jsonWriter.write(home);
+            jsonWriter.close();
+            System.out.println("Saved " + "home" + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
     }
 
     // EFFECTS: prompts the user to add a new pet to home
