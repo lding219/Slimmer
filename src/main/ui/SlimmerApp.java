@@ -1,18 +1,28 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 // My code of this class is referencing TellerApp and FlashcardReviewer
 // Pets food intake documentation app
 public class SlimmerApp {
     private boolean isProgramRunning;
     private Scanner scanner;
-    private ArrayList<Pet> home;
+    private Home home;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/home.json";
 
     // run the slimmer app
-    public SlimmerApp() {
+    public SlimmerApp() throws FileNotFoundException {
+        this.jsonWriter = new JsonWriter(JSON_STORE);
+        this.jsonReader = new JsonReader(JSON_STORE);
+        this.home = new Home();
         init();
         printDivider();
         System.out.println("Welcome to Slimmer!");
@@ -26,13 +36,19 @@ public class SlimmerApp {
     public void handleMenu() {
         displayMenu();
         String input = this.scanner.nextLine();
-        processMenuCommands(input);
+        if (input.equals("q")) {
+            isProgramRunning = false;
+            System.out.println("\nGoodbye!");
+        } else {
+            processMenuCommands(input);
+        }
+
     }
 
     // MODIFIES: this
     // EFFECT: initialize the slimmer app with the starting values
     public void init() {
-        this.home = new ArrayList<>();
+        this.home = new Home();
         this.scanner = new Scanner(System.in);
         this.isProgramRunning = true;
     }
@@ -40,17 +56,22 @@ public class SlimmerApp {
     // EFFECTS: displays a list of commands that can be used in the main menu
     public void displayMenu() {
         System.out.println("Please select an option:\n");
+        System.out.println("l: Load previous data");
         System.out.println("a: Add a new pet");
         System.out.println("v: Visit my home");
         System.out.println("d: View daily report of a pet before feeding");
         System.out.println("f: Feed my pet");
+        System.out.println("s: Save before quit");
+        System.out.println("q: quit without save");
         printDivider();
     }
 
     // EFFECTS: processes the user's input in the main menu
     public void processMenuCommands(String input) {
-        printDivider();
         switch (input) {
+            case "l":
+                load();
+                break;
             case "a":
                 addNewPet();
                 break;
@@ -63,10 +84,23 @@ public class SlimmerApp {
             case "d":
                 viewDailyReport();
                 break;
+            case "s":
+                saveBeforeQuit();
+                break;
             default:
                 System.out.println("Invalid option inputted. Please try again.");
         }
         printDivider();
+    }
+
+    //MODIFIES: this
+    //EFFTECS: load home from file
+    private void load() {
+       //stub
+    }
+    //EFFECTS: save home to file
+    private void saveBeforeQuit() {
+        //stub
     }
 
     // EFFECTS: prompts the user to add a new pet to home
@@ -74,7 +108,7 @@ public class SlimmerApp {
         System.out.println("Please enter the pet's name");
         String petName = this.scanner.nextLine();
         Pet pet = new Pet(petName);
-        this.home.add(pet);
+        this.home.addPet(pet);
         System.out.println("\nNew pet successfully added!");
     }
 
@@ -83,12 +117,13 @@ public class SlimmerApp {
     // weekly report.
     // if the pet is in home, it will return a weekly report
     public void viewHome() {
-        if (!home.isEmpty()) {
+        ArrayList<Pet> pets = home.viewHome();
+        if (!pets.isEmpty()) {
             labelPrinter();
             System.out.println("Please enter the pet you want to view the weekly report");
             int reportNumber = this.scanner.nextInt();
             this.scanner.nextLine();
-            for (Pet pet : home) {
+            for (Pet pet : pets) {
                 if (reportNumber == pet.getLabelNumber()) {
                     weeklyReportPrinter(pet);
                 }
@@ -103,6 +138,7 @@ public class SlimmerApp {
     // EFFETCS: displays the daily report if the label
     // user entered is in home
     public void viewDailyReport() {
+        ArrayList<Pet> pets = home.viewHome();
         labelPrinter();
         boolean found = false;
         System.out.println("Please enter the pet you want to view the daily report");
@@ -110,7 +146,7 @@ public class SlimmerApp {
         this.scanner.nextLine();
         System.out.println("Please enter the day you want to check. eg. Monday");
         String dayName = this.scanner.nextLine();
-        for (Pet pet : home) {
+        for (Pet pet : pets) {
             if (dailyNum == (pet.getLabelNumber())) {
                 found = true;
                 dailyReportPrinter(pet, dayName);
@@ -151,12 +187,13 @@ public class SlimmerApp {
     // EFFECTS: label the pets at home, prompts the user to feed the pet
     // with using the number labelled
     public void feed() {
+        ArrayList<Pet> pets = home.viewHome();
         labelPrinter();
         System.out.println("Please enter the pet you want to feed");
         int petNumber = this.scanner.nextInt();
         this.scanner.nextLine();
         boolean included = false;
-        for (Pet pet : home) {
+        for (Pet pet : pets) {
             if (petNumber == pet.getLabelNumber()) {
                 included = true;
                 System.out.println("What food do you want to feed?");
@@ -167,7 +204,6 @@ public class SlimmerApp {
                 System.out.println("On what day? eg. Monday");
                 String day = this.scanner.nextLine();
                 pet.eatFood(new Food(foodName, 0, day), foodAmount);
-                System.out.println("Yummy!");
                 break;
             }
         }
@@ -179,10 +215,12 @@ public class SlimmerApp {
     // MODIFIES: pet, this
     // EFFECTS: label the pets at home
     public void labelPets() {
+        ArrayList<Pet> pets = home.viewHome();
         int i = 1;
-        for (Pet pet : home) {
+        for (Pet pet : pets) {
             pet.setLabelNumber(i);
             i++;
+
         }
     }
 
@@ -190,10 +228,11 @@ public class SlimmerApp {
     // EFFECTS: print the label and the pet names.
     // if there is no pets at home, asks the user to add a pet
     public void labelPrinter() {
-        if (!home.isEmpty()) {
+        ArrayList<Pet> pets = home.viewHome();
+        if (!pets.isEmpty()) {
             labelPets();
             System.out.println("You have these pets at home: ");
-            for (Pet pet : home) {
+            for (Pet pet : pets) {
                 System.out.println(pet.getLabelNumber() + ". " + pet.getPetName());
             }
         } else {
