@@ -46,25 +46,43 @@ public class JsonReader {
     // EFFECTS: parses home from JSON object and returns it
     private Home parseHome(JSONObject jsonObject) {
         Home home = new Home();
-        // stub
+        addPetsToHome(home, jsonObject);
         return home;
     }
 
     // MODIFIES: home
     // EFFECTS: parses pet from JSON object and adds them to home
     private void addPetsToHome(Home h, JSONObject jsonObject) {
-        // stub
+        JSONArray jsonArray = jsonObject.getJSONArray("home");
+        for (Object json : jsonArray) {
+            JSONObject petJson = (JSONObject) json;
+            addPet(h, petJson);
+        }
     }
 
     // MODIFIES: home
     // EFFECTS: parses thingy from JSON object and adds it to home
     private void addPet(Home h, JSONObject jsonObject) {
-        // stub
+        String petName = jsonObject.getString("petName");
+        int labelNumber = jsonObject.getInt("labelNumber");
+        Pet p = new Pet(petName);
+        p.setLabelNumber(labelNumber);
+        JSONArray foodsJson = jsonObject.getJSONArray("foods");
+        addFoodsToPet(p, foodsJson);
+        h.addPet(p);
     }
 
     // MODIFIES: pet
     // EFFECTS: parses foods from JSON object and adds it to pet
     private void addFoodsToPet(Pet pet, JSONArray jsonArray) {
-        // stub
+        for (Object json : jsonArray) {
+            JSONObject foodJson = (JSONObject) json;
+            String foodName = foodJson.getString("foodName");
+            int foodAmount = foodJson.getInt("foodAmount");
+            String dayName = foodJson.getString("dayName");
+            Food food = new Food(foodName, foodAmount, dayName);
+            pet.getFoods().add(food);
+        }
     }
-}
+    }
+
