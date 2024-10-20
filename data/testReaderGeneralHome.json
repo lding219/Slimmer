@@ -1,0 +1,36 @@
+{
+    "home": [
+        {
+            "petName": "Lucky",
+            "labelNumber": 1,
+            "foods": [
+                {
+                    "foodName": "apple",
+                    "foodAmount": 10,
+                    "dayName": "Monday"
+                },
+                {
+                    "foodName": "bone",
+                    "foodAmount": 1,
+                    "dayName": "Tuesday"
+                }
+            ]
+        },
+        {
+            "petName": "Tutu",
+            "labelNumber": 2,
+            "foods": [
+                {
+                    "foodName": "treats",
+                    "foodAmount": 5,
+                    "dayName": "Wednesday"
+                },
+                {
+                    "foodName": "fish",
+                    "foodAmount": 2,
+                    "dayName": "Friday"
+                }
+            ]
+        }
+    ]
+}
