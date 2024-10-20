@@ -93,8 +93,8 @@ public class SlimmerApp {
         printDivider();
     }
 
-    //MODIFIES: this
-    //EFFTECS: load home from file
+    // MODIFIES: this
+    // EFFTECS: load home from file
     private void load() {
         try {
             home = jsonReader.read();
@@ -103,7 +103,8 @@ public class SlimmerApp {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
-    //EFFECTS: save home to file
+
+    // EFFECTS: save home to file
     private void saveBeforeQuit() {
         try {
             jsonWriter.open();
