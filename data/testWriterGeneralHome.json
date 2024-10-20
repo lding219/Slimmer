@@ -1,34 +1,16 @@
-{"home": [
-    {
-        "petName": "Lucky",
-        "foods": [
-            {
-                "foodName": "apple",
-                "dayName": "Monday",
-                "foodAmount": 10
-            },
-            {
-                "foodName": "bone",
-                "dayName": "Tuesday",
-                "foodAmount": 1
-            }
-        ],
-        "labelNumber": 0
-    },
-    {
-        "petName": "Tutu",
-        "foods": [
-            {
-                "foodName": "treats",
-                "dayName": "Wednesday",
-                "foodAmount": 5
-            },
-            {
-                "foodName": "fish",
-                "dayName": "Friday",
-                "foodAmount": 2
-            }
-        ],
-        "labelNumber": 0
-    }
-]}
+{"home": [{
+    "petName": "Lucky",
+    "foods": [
+        {
+            "foodName": "apple",
+            "dayName": "Monday",
+            "foodAmount": 10
+        },
+        {
+            "foodName": "bone",
+            "dayName": "Tuesday",
+            "foodAmount": 1
+        }
+    ],
+    "labelNumber": 0
+}]}

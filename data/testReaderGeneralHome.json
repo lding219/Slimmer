@@ -15,22 +15,6 @@
                     "dayName": "Tuesday"
                 }
             ]
-        },
-        {
-            "petName": "Tutu",
-            "labelNumber": 2,
-            "foods": [
-                {
-                    "foodName": "treats",
-                    "foodAmount": 5,
-                    "dayName": "Wednesday"
-                },
-                {
-                    "foodName": "fish",
-                    "foodAmount": 2,
-                    "dayName": "Friday"
-                }
-            ]
-        }
+        }    
     ]
 }
