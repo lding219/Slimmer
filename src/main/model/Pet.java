@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import persistence.Writable;
 
-public class Pet implements Writable{
+public class Pet implements Writable {
     private int labelNumber; // label of the pet
     private String petName; // name of the pet
     private ArrayList<Food> foods; // the list of food the pet has had during the whole week
@@ -83,6 +83,7 @@ public class Pet implements Writable{
         json.put("foods", foodsToPet());
         return json;
     }
+
     // EFFECTS: returns things in this workroom as a JSON array
     private JSONArray foodsToPet() {
         JSONArray jsonArray = new JSONArray();
