@@ -13,7 +13,7 @@ import model.Food;
 import model.Home;
 import model.Pet;
 
-//// Referenced from the JsonSerialization Demo
+// Referenced from the JsonSerialization Demo
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 // Represents a reader that reads home from JSON data stored in file
 public class JsonReader {
@@ -84,5 +84,4 @@ public class JsonReader {
             pet.getFoods().add(food);
         }
     }
-    }
-
+}
