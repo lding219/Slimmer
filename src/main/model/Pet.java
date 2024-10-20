@@ -78,7 +78,8 @@ public class Pet implements Writable{
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("Pet name", petName);
+        json.put("petName", this.petName);
+        json.put("labelNumber", this.labelNumber);
         json.put("foods", foodsToPet());
         return json;
     }
