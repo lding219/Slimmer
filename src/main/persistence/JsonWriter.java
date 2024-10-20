@@ -3,7 +3,8 @@ package persistence;
 import org.json.JSONObject;
 import java.io.*;
 import model.Home;
-// Referenced from the JsonSerialization Demo
+
+//// Referenced from the JsonSerialization Demo
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 // Represents a writer that writes JSON representation of home to file
@@ -22,24 +23,25 @@ public class JsonWriter {
     // cannot
     // be opened for writing
     public void open() throws FileNotFoundException {
-        //stub
+        writer = new PrintWriter(new File(destination));
     }
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of home to file
     public void write(Home h) {
-        //stub
+        JSONObject json = h.toJson();
+        saveToFile(json.toString(TAB));
     }
 
     // MODIFIES: this
     // EFFECTS: closes writer
     public void close() {
-       //stub
+        writer.close();
     }
 
     // MODIFIES: this
     // EFFECTS: writes string to file
     private void saveToFile(String json) {
-       //stub
+        writer.print(json);
     }
 }
