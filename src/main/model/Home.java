@@ -5,7 +5,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 import java.util.ArrayList;
 
-// Represents a list of pets at home
+// Represents a home includes a list of pets
 public class Home implements Writable {
     private ArrayList<Pet> home;
 

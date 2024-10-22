@@ -4,6 +4,10 @@ import org.json.JSONObject;
 
 import persistence.Writable;
 
+// Represents a food that can be eaten by a pet with
+// a food name, food Amount(ea), and a day name, including
+// Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, and
+// Sunday.
 public class Food implements Writable {
     private int foodAmount; // the food amount the pet has had
     private String foodName;// the name of the food

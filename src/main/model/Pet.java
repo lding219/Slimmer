@@ -7,6 +7,9 @@ import org.json.JSONObject;
 
 import persistence.Writable;
 
+// Represents a pet having a name, a
+// label number, and a list of foods the pet has had during
+// the week.
 public class Pet implements Writable {
     private int labelNumber; // label of the pet
     private String petName; // name of the pet
