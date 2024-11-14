@@ -61,6 +61,7 @@ public class SlimmerUI extends JFrame implements ActionListener {
     private ImageIcon petImageIcon;
     private JFrame homeFrame;
     private JPanel homePanel;
+    private JScrollPane homeScrollPane;
 
     //
     public SlimmerUI() {
@@ -480,7 +481,7 @@ public class SlimmerUI extends JFrame implements ActionListener {
                 JLabel petImageLabel = new JLabel(petImageIcon);
                 homePanel.add(petImageLabel);
             }
-            homeFrame.add(homePanel);
+            homeFrame.add(homeScrollPane);
             homeFrame.setVisible(true);
         } else {
             gbc.gridy = 11;
@@ -503,6 +504,9 @@ public class SlimmerUI extends JFrame implements ActionListener {
         homePanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         JLabel homeLabel = new JLabel("You have these pets at home:");
         homePanel.add(homeLabel);
+        homeScrollPane = new JScrollPane(homePanel);
+        homeScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        homeScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
     // MODIFIES: this
