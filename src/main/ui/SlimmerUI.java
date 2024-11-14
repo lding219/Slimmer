@@ -620,6 +620,7 @@ public class SlimmerUI extends JFrame implements ActionListener {
             if (!petNames.contains(field.getText())) {
                 Pet pet = new Pet(field.getText());
                 home.addPet(pet);
+                field.setText("");
             }
         }
     }
