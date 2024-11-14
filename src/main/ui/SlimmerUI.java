@@ -79,7 +79,7 @@ public class SlimmerUI extends JFrame implements ActionListener {
     public void initialize() {
         petImageIcon = new ImageIcon("data/catImage.PNG");
         Image image = petImageIcon.getImage();
-        Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = image.getScaledInstance(140, 120, java.awt.Image.SCALE_SMOOTH);
         petImageIcon = new ImageIcon(newimg);
         menuPanel = new JPanel();
         home = new Home();
