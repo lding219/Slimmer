@@ -19,12 +19,12 @@ public class Home implements Writable {
     public void addPet(Pet pet) {
         this.home.add(pet);
     }
+
     // MODIFIES: this
     // EFFECTS: remove a pet from the list of old pets
     public void removePet(Pet pet) {
         home.remove(pet);
     }
-
 
     public ArrayList<Pet> viewHome() {
         return home;

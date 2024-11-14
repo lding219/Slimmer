@@ -95,7 +95,7 @@ public class SlimmerApp {
 
     // MODIFIES: this
     // EFFTECS: load home from file
-    private void load() {
+    public void load() {
         try {
             home = jsonReader.read();
             System.out.println("Loaded " + "home" + " from " + JSON_STORE);
@@ -105,7 +105,7 @@ public class SlimmerApp {
     }
 
     // EFFECTS: save home to file
-    private void saveBeforeQuit() {
+    public void saveBeforeQuit() {
         try {
             jsonWriter.open();
             jsonWriter.write(home);
@@ -188,10 +188,10 @@ public class SlimmerApp {
         if (dailyFoods.isEmpty()) {
             System.out.println(day + ": Alert! Ate nothing");
         } else {
-            System.out.print(day + ": ");
+            System.out.println(day + ": ");
             for (Food food : dailyFoods) {
-                System.out
-                        .print(pet.getPetName() + " ate " + food.getFoodName() + " by " + food.getFoodAmount() + "\n");
+                System.out.println(
+                        pet.getPetName() + " ate " + food.getFoodName() + " by " + food.getFoodAmount() + "\n");
             }
             System.out.println();
         }
@@ -256,5 +256,13 @@ public class SlimmerApp {
     // EFFECTS: prints out a line of dashes to act as a divider
     private void printDivider() {
         System.out.println("------------------------------------");
+    }
+
+    public static void main(String[] args) {
+        try {
+            new SlimmerApp();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to run application: file not found");
+        }
     }
 }
