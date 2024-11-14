@@ -22,7 +22,9 @@ public class Home implements Writable {
     // MODIFIES: this
     // EFFECTS: remove a pet from the list of old pets
     public void removePet(Pet pet) {
+        home.remove(pet);
     }
+
 
     public ArrayList<Pet> viewHome() {
         return home;
