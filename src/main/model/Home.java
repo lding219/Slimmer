@@ -19,6 +19,10 @@ public class Home implements Writable {
     public void addPet(Pet pet) {
         this.home.add(pet);
     }
+    // MODIFIES: this
+    // EFFECTS: remove a pet from the list of old pets
+    public void removePet(Pet pet) {
+    }
 
     public ArrayList<Pet> viewHome() {
         return home;
@@ -26,6 +30,15 @@ public class Home implements Writable {
 
     public int getHomeSize() {
         return home.size();
+    }
+
+    public Pet getPet(String petName) {
+        for (Pet p : home) {
+            if (p.getPetName().equals(petName)) {
+                return p;
+            }
+        }
+        return null;
     }
 
     @Override
