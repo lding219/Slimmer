@@ -621,6 +621,14 @@ public class SlimmerUI extends JFrame implements ActionListener {
                 Pet pet = new Pet(field.getText());
                 home.addPet(pet);
                 field.setText("");
+            } else {
+                JLabel petAlreadyExistJLabel = new JLabel(
+                        "You already have " + field.getText() + " in your home, please add another pet!");
+                field.setText("");
+                gbc.gridy = 15;
+                menuPanel.add(petAlreadyExistJLabel, gbc);
+                revalidate();
+                repaint();
             }
         }
     }
