@@ -83,7 +83,8 @@ public class SlimmerUI extends JFrame implements ActionListener {
         petImageIcon = new ImageIcon(newimg);
         menuPanel = new JPanel();
         home = new Home();
-        label = new JLabel("What can I help you today?");
+        label = new JLabel("Welcome to Slimmer!");
+        label.setFont(new Font("Algerian", Font.BOLD, 40));
         viewHomeButton = new JButton("View Home");
         addPetButton = new JButton("Add Pet");
         feedButton = new JButton("Feed");
@@ -475,7 +476,6 @@ public class SlimmerUI extends JFrame implements ActionListener {
             homeFrameSetUp();
             for (Pet pet : pets) {
                 JLabel petLabel = new JLabel(pet.getPetName());
-                petLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
                 homePanel.add(petLabel);
                 JLabel petImageLabel = new JLabel(petImageIcon);
                 homePanel.add(petImageLabel);
@@ -501,6 +501,8 @@ public class SlimmerUI extends JFrame implements ActionListener {
         homePanel = new JPanel();
         homePanel.setLayout(new BoxLayout(homePanel, BoxLayout.Y_AXIS));
         homePanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        JLabel homeLabel = new JLabel("You have these pets at home:");
+        homePanel.add(homeLabel);
     }
 
     // MODIFIES: this
