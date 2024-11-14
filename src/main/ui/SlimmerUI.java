@@ -620,7 +620,13 @@ public class SlimmerUI extends JFrame implements ActionListener {
             if (!petNames.contains(field.getText())) {
                 Pet pet = new Pet(field.getText());
                 home.addPet(pet);
+                JLabel successfullyAddedLabel = new JLabel(
+                        "Sucessfully added " + field.getText() + " to home!");
                 field.setText("");
+                gbc.gridy = 15;
+                menuPanel.add(successfullyAddedLabel, gbc);
+                revalidate();
+                repaint();
             } else {
                 JLabel petAlreadyExistJLabel = new JLabel(
                         "You already have " + field.getText() + " in your home, please add another pet!");
