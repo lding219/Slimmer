@@ -5,12 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
+import model.exception.LogException;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
 // My code of this class is referencing TellerApp and FlashcardReviewer
 // Pets food intake documentation app
-public class SlimmerApp {
+public class SlimmerApp implements LogPrinter {
     private boolean isProgramRunning;
     private Scanner scanner;
     private Home home;
@@ -37,6 +38,11 @@ public class SlimmerApp {
         displayMenu();
         String input = this.scanner.nextLine();
         if (input.equals("q")) {
+            try {
+                printLog(EventLog.getInstance());
+            } catch (LogException e) {
+                System.out.println("Log error!");
+            }
             isProgramRunning = false;
             System.out.println("\nGoodbye!");
         } else {
@@ -263,6 +269,13 @@ public class SlimmerApp {
             new SlimmerApp();
         } catch (FileNotFoundException e) {
             System.out.println("Unable to run application: file not found");
+        }
+    }
+
+    @Override
+    public void printLog(EventLog el) throws LogException {
+        for (Event next : el) {
+            System.out.println(next.toString());
         }
     }
 }

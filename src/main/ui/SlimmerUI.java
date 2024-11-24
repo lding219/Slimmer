@@ -5,16 +5,20 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import model.*;
+import model.Event;
+import model.exception.LogException;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
-public class SlimmerUI extends JFrame implements ActionListener {
+public class SlimmerUI extends JFrame implements ActionListener, LogPrinter, WindowListener {
     private JLabel label;
     private JButton addPetButton;
     private JButton feedButton;
@@ -100,6 +104,7 @@ public class SlimmerUI extends JFrame implements ActionListener {
         addButtonListener();
         field = new JTextField(1);
         field.setColumns(8);
+        addWindowListener(this);
     }
 
     // MODIFIES: this
@@ -636,5 +641,52 @@ public class SlimmerUI extends JFrame implements ActionListener {
     // starts the application
     public static void main(String[] args) {
         new SlimmerUI();
+    }
+
+    @Override
+    public void printLog(EventLog el) throws LogException {
+        for (Event next : el) {
+            System.out.println(next.toString());
+        }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        System.out.println("Window Opened");
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        try {
+            printLog(EventLog.getInstance());
+        } catch (LogException e1) {
+            System.out.println("Error printing log");
+        }
+        System.out.println("Window closing");
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        // System.out.println("Window closed");
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        // System.out.println("Window Iconified");
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        // System.out.println("Window Deiconified");
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        // System.out.println("Window Activated");
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        // System.out.println("Window Deactivated");
     }
 }
