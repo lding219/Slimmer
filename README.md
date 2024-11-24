@@ -27,5 +27,16 @@ This application interests me because I am personally a cat owner. I feel anxiou
 - To load the previous data, please press the "Load Previous Data" button.
 - To save your progress, please press the "Save" button before you quit.
 - You can locate my visual component by viewing pets at your home. Each name will come with a pet image.
-
-
+## Phase 4: Task 2
+Sun Nov 24 13:41:10 PST 2024
+Successfully read data!
+Sun Nov 24 13:41:10 PST 2024
+Successfully added lucky
+Sun Nov 24 13:41:14 PST 2024
+View foods lucky ate on Monday
+Sun Nov 24 13:26:04 PST 2024
+Successfully saved data!
+Sun Nov 24 13:25:58 PST 2024
+Successfully removed eggy
+Sun Nov 24 14:06:08 PST 2024
+Feed lucky apple by 10
