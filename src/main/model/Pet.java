@@ -32,20 +32,14 @@ public class Pet implements Writable {
     // when the new food is something already in the list,
     // just increase the foodAmount.
     public void eatFood(Food newFood, int amount) {
-        boolean found = false;
-        String newFoodName = newFood.getFoodName();
-        String newFoodDayName = newFood.getDayName();
-        for (Food food : foods) {
-            if (food.getFoodName().equals(newFoodName) && newFoodDayName.equals(food.getDayName())) {
-                found = true;
-                food.increaseAmountBy(amount);
-                break;
-            }
-        }
-        if (!found) {
+        if (foods.contains(newFood)) {
+            newFood.increaseAmountBy(amount);
+        } else {
             foods.add(newFood);
             newFood.increaseAmountBy(amount);
         }
+        EventLog.getInstance()
+                .logEvent(new Event("Feed " + this.getPetName() + " " + newFood.getFoodName() + " by " + amount));
     }
 
     // REQUIRES: day must be a day in the week, eg. Monday
@@ -58,6 +52,7 @@ public class Pet implements Writable {
                 dailyFoods.add(food);
             }
         }
+        EventLog.getInstance().logEvent(new Event("View foods " + this.getPetName() + " ate on " + day));
         return dailyFoods;
     }
 
