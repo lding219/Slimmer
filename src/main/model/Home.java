@@ -18,12 +18,14 @@ public class Home implements Writable {
     // EFFECTS: add a new pet to the list of old pets
     public void addPet(Pet pet) {
         this.home.add(pet);
+        EventLog.getInstance().logEvent(new Event("Successfully added " + pet.getPetName()));
     }
 
     // MODIFIES: this
     // EFFECTS: remove a pet from the list of old pets
     public void removePet(Pet pet) {
         home.remove(pet);
+        EventLog.getInstance().logEvent(new Event("Successfully removed " + pet.getPetName()));
     }
 
     public ArrayList<Pet> viewHome() {
