@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import model.Event;
+import model.EventLog;
 import model.Food;
 import model.Home;
 import model.Pet;
@@ -29,6 +31,7 @@ public class JsonReader {
     public Home read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event("Successfully read data!"));
         return parseHome(jsonObject);
     }
 

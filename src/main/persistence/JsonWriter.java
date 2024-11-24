@@ -2,6 +2,9 @@ package persistence;
 
 import org.json.JSONObject;
 import java.io.*;
+
+import model.Event;
+import model.EventLog;
 import model.Home;
 
 //// Referenced from the JsonSerialization Demo
@@ -30,6 +33,8 @@ public class JsonWriter {
     public void write(Home h) {
         JSONObject json = h.toJson();
         saveToFile(json.toString(TAB));
+        EventLog.getInstance().logEvent(new Event("Successfully saved data!"));
+
     }
 
     // MODIFIES: this
