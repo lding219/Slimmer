@@ -40,3 +40,6 @@ This application interests me because I am personally a cat owner. I feel anxiou
 - Successfully removed eggy
 - Sun Nov 24 14:06:08 PST 2024
 - Feed lucky apple by 10
+## Phase 4: Task 3
+If I had more time, I would like to refactor my SlimmerUI class. There are too many fields in that class. I would like to refactor it as what the AlarmSystem did: divide the GUI into multiple classes, so that it would be clearer if I want to modify a specific functionality of the GUI.   
+I also want to refactor the Home class by adding a field "List pets" in the Pet class. With this modification, it would be clearer. But this modification also has drawbacks. It is good to refactor it now because pets are the only thing at home, but if I want to add other things, for example, family members, it is good to have this home class.
