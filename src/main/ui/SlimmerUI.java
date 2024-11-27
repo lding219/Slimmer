@@ -44,7 +44,6 @@ public class SlimmerUI extends JFrame implements ActionListener, LogPrinter, Win
     private JComboBox<String> petComboBox;
     private JFrame feedFrame;
     private JPanel feedPanel;
-    private Pet selectedPet;
     private String selectedDay;
     private JFrame removeFrame;
     private JPanel removePanel;
@@ -287,7 +286,7 @@ public class SlimmerUI extends JFrame implements ActionListener, LogPrinter, Win
     // EFFECTS: remove the selected pet from home
     public void confirmRemove() {
         String petChoice = (String) petComboBox.getSelectedItem();
-        selectedPet = home.getPet(petChoice);
+        Pet selectedPet = new Pet(petChoice);
         home.removePet(selectedPet);
     }
 
@@ -353,6 +352,8 @@ public class SlimmerUI extends JFrame implements ActionListener, LogPrinter, Win
     // EFFECTS: print out the weekly report for the selected pet
     public void view() {
         weeklyPrinterFrameSetUp();
+        String petChoice = (String) petComboBox.getSelectedItem();
+        Pet selectedPet = home.getPet(petChoice);
         for (String day : days) {
             ArrayList<Food> dailyFoods = selectedPet.viewDailyFoods(day);
             if (dailyFoods.isEmpty()) {
@@ -368,7 +369,6 @@ public class SlimmerUI extends JFrame implements ActionListener, LogPrinter, Win
                     weeklyPrinterPanel.add(dailyJLabel);
                 }
             }
-            weeklyPrinterPanel.revalidate();
             weeklyPrinterPanel.repaint();
         }
     }
@@ -377,7 +377,6 @@ public class SlimmerUI extends JFrame implements ActionListener, LogPrinter, Win
     // EFFECTS: helper method to set up the weekly printer frame
     public void weeklyPrinterFrameSetUp() {
         String petChoice = (String) petComboBox.getSelectedItem();
-        selectedPet = home.getPet(petChoice);
         weeklyPrinterFrame = new JFrame(petChoice + "'s weekly report");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         weeklyPrinterFrame.setSize(400, 500);
@@ -395,6 +394,7 @@ public class SlimmerUI extends JFrame implements ActionListener, LogPrinter, Win
     public void viewDaily() {
         dailyPrinterFrameSetUp();
         String petChoice = (String) petComboBox.getSelectedItem();
+        Pet selectedPet = new Pet(petChoice);
         selectedPet = home.getPet(petChoice);
         selectedDay = (String) dayComboBox.getSelectedItem();
         ArrayList<Food> dailyFoods = selectedPet.viewDailyFoods(selectedDay);
@@ -418,7 +418,6 @@ public class SlimmerUI extends JFrame implements ActionListener, LogPrinter, Win
     // EFFECTS: helper method to set up the daily printer frame
     public void dailyPrinterFrameSetUp() {
         String petChoice = (String) petComboBox.getSelectedItem();
-        selectedPet = home.getPet(petChoice);
         selectedDay = (String) dayComboBox.getSelectedItem();
         dailyPrinterFrame = new JFrame(petChoice + "'s " + selectedDay + " report");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -584,6 +583,7 @@ public class SlimmerUI extends JFrame implements ActionListener, LogPrinter, Win
     // EFFECTS: feed the selectedPet by the given amount
     private void confirm() {
         String petChoice = (String) petComboBox.getSelectedItem();
+        Pet selectedPet = new Pet(petChoice);
         selectedPet = home.getPet(petChoice);
         selectedDay = (String) dayComboBox.getSelectedItem();
         String foodName = whatFoodField.getText();
