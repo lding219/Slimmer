@@ -1,4 +1,4 @@
-# Pet slimmer
+# Pet slimmer(CPSC 210 Project)
 
 ## Description
 This application can help the users to **document the food** their pets have had in a day. Then put each day's data into a weekly report.
